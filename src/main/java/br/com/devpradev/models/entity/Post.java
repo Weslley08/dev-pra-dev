@@ -31,7 +31,7 @@ public class Post {
   @Size(min = 10, message = "O conteúdo não pode ter menos que 10 caracteres!")
   private String texto;
 
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyy HH:mm:ss a z", timezone = "America/Sao_Paulo")
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/mm/yyyy / HH:mm", timezone = "America/Sao_Paulo")
   private Date data = new Date();
 
 }
