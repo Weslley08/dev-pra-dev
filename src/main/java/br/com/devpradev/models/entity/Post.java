@@ -1,11 +1,11 @@
 package br.com.devpradev.models.entity;
 
-import java.time.LocalDate;
+import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
 
@@ -31,7 +31,7 @@ public class Post {
   @Size(min = 10, message = "O conteúdo não pode ter menos que 10 caracteres!")
   private String texto;
 
-  @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd-MM-yyyy")
-  private LocalDate data;
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyy HH:mm:ss a z", timezone = "America/Sao_Paulo")
+  private Date data = new Date();
 
 }
