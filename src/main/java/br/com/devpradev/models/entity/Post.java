@@ -1,6 +1,9 @@
 package br.com.devpradev.models.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
@@ -20,18 +23,15 @@ public class Post {
   private Long idPost;
 
   @NotEmpty
-  @Size(min = 5, message = "O título não pode ter menos que 5 caracteres!")
   private String titulo;
 
   @NotEmpty
-  @Size(min = 5, message = "O título não pode ter menos que 5 caracteres!")
   private String autor;
 
   @NotEmpty
-  @Size(min = 10, message = "O conteúdo não pode ter menos que 10 caracteres!")
   private String texto;
 
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/mm/yyyy / HH:mm", timezone = "America/Sao_Paulo")
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy - HH:mm", timezone = "America/Sao_Paulo")
   private Date data = new Date();
 
 }
