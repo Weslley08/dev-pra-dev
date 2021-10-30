@@ -1,0 +1,5 @@
+br\com\devpradev\DevPraDevApplication.class
+br\com\devpradev\controller\PostController.class
+br\com\devpradev\models\entity\Post.class
+br\com\devpradev\repository\PostRepository.class
+br\com\devpradev\service\PostService.class
