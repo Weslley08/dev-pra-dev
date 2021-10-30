@@ -1,14 +1,11 @@
 package br.com.devpradev.models.entity;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 
 import lombok.Data;
 
