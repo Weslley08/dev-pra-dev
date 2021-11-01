@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("api/blog")
 public class PostController {
 
-    @Autowired
+	@Autowired
 	PostService postService;
 
 	@GetMapping
@@ -21,7 +21,7 @@ public class PostController {
 		return ResponseEntity.ok(postService.findAll());
 	}
 
-	@GetMapping(path = {"/{id}"})
+	@GetMapping(path = { "/{id}" })
 	public ResponseEntity<Post> findById(@PathVariable Long id) {
 		return ResponseEntity.ok(postService.findById(id));
 	}
@@ -31,12 +31,13 @@ public class PostController {
 		return ResponseEntity.ok(postService.save(post));
 	}
 
-	@PutMapping(value = {"/{id}"}) 
-	public ResponseEntity<Post> update(@RequestBody Post post) {
-		return ResponseEntity.ok(postService.update(post));
+	@PutMapping(path = { "/{id}" })
+	public ResponseEntity<Post> update(@PathVariable Long id, @RequestBody Post objpost) {
+		Post newObjPost = postService.update(id, objpost);
+		return ResponseEntity.ok().body(newObjPost);
 	}
 
-	@DeleteMapping({"/{id}"})
+	@DeleteMapping({ "/{id}" })
 	public ResponseEntity<Post> delete(@PathVariable Long id) {
 		return ResponseEntity.ok(postService.delete(id));
 	}

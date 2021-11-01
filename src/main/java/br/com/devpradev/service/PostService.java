@@ -31,9 +31,21 @@ public class PostService {
     }
 
     @Transactional
-    public Post update(Post post) {
-        Post atualizarPost = post;
-        return postRepository.save(atualizarPost);
+    public Post update(Long id, Post objPost) {
+        Post oldObjPost = findById(id);
+
+        oldObjPost.setTitulo(objPost.getTitulo());
+        oldObjPost.setAutor(objPost.getAutor());
+        oldObjPost.setTexto(objPost.getTexto());
+        oldObjPost.setData(objPost.getData());
+        return postRepository.save(oldObjPost);
+    }
+
+    @Transactional
+    public Post update(Long id) {
+        Post post = this.findById(id);
+        postRepository.save(post);
+        return post;
     }
 
     @Transactional
