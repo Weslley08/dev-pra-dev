@@ -12,46 +12,47 @@ import java.util.List;
 @Service
 public class PostService {
 
-    @Autowired
-    PostRepository postRepository;
+	@Autowired
+	PostRepository postRepository;
 
-    @Transactional
-    public List<Post> findAll() {
-        return postRepository.findAll();
-    }
+	@Transactional
+	public List<Post> findAll() {
+		return postRepository.findAll();
+	}
 
-    @Transactional
-    public Post findById(long id) {
-        return postRepository.findById(id).get();
-    }
+	@Transactional
+	public Post findById(long id) {
+		return postRepository.findById(id).get();
+	}
 
-    @Transactional
-    public Post save(Post post) {
-        return postRepository.save(post);
-    }
+	@Transactional
+	public Post save(Post post) {
+		return postRepository.save(post);
+	}
 
-    @Transactional
-    public Post update(Long id, Post objPost) {
-        Post oldObjPost = findById(id);
+	@Transactional
+	public Post update(Long id, Post objPost) {
+		Post oldObjPost = findById(id);
 
-        oldObjPost.setTitulo(objPost.getTitulo());
-        oldObjPost.setAutor(objPost.getAutor());
-        oldObjPost.setTexto(objPost.getTexto());
-        oldObjPost.setData(objPost.getData());
-        return postRepository.save(oldObjPost);
-    }
+		oldObjPost.setTitulo(objPost.getTitulo());
+		oldObjPost.setAutor(objPost.getAutor());
+		oldObjPost.setTexto(objPost.getTexto());
+		oldObjPost.setData(objPost.getData());
+		return postRepository.save(oldObjPost);
+	}
 
-    @Transactional
-    public Post update(Long id) {
-        Post post = this.findById(id);
-        postRepository.save(post);
-        return post;
-    }
+	@Transactional
+	public Post update(Long id) {
+		Post post = this.findById(id);
+		postRepository.save(post);
+		return post;
+	}
 
-    @Transactional
-    public Post delete(Long id) {
-        Post post = this.findById(id);
-        postRepository.deleteById(post.getIdPost());
-        return post;
-    }
+	@Transactional
+	public Post delete(Long id) {
+		Post post = this.findById(id);
+		postRepository.deleteById(post.getIdPost());
+		return post;
+	}
+
 }
