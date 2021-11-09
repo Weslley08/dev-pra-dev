@@ -10,6 +10,7 @@ import br.com.devpradev.models.entity.Post;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://127.0.0.1:5500")
 @RequestMapping("api/blog")
 public class PostController {
 
