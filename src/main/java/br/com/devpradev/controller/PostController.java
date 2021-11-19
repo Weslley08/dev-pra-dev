@@ -27,7 +27,7 @@ public class PostController {
 		return ResponseEntity.ok(postService.findById(id));
 	}
 
-	@PostMapping
+	@PostMapping(path = {"/criar"})
 	public ResponseEntity<Post> save(@RequestBody Post post) {
 		return ResponseEntity.ok(postService.save(post));
 	}
