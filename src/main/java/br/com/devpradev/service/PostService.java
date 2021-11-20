@@ -21,14 +21,12 @@ public class PostService {
 
 	private PostRepository postRepository;
 
-
 	private final PostMapper postMapper = PostMapper.INSTANCE;
 
 	public MessageResponseDTO savePost(PostDTO postDTO){
 		Post postToSave = postMapper.toModel(postDTO);
 
 		Post savedPost = postRepository.save(postToSave);
-
 		return CreateMessageResponde (savedPost.getIdPost(),"Post criado! ");
 	}
 
@@ -39,14 +37,12 @@ public class PostService {
 
 	public PostDTO findById(Long id) throws PostNotFoundException {
 		Post post = VerificarExistencia(id);
-
 		return postMapper.toDTO(post);
 	}
 
 	public void delete(Long id) throws PostNotFoundException {
 		VerificarExistencia(id);
 		postRepository.deleteById(id);
-
 	}
 
 	public MessageResponseDTO updateById(Long id, PostDTO postDTO) throws PostNotFoundException {
@@ -55,7 +51,6 @@ public class PostService {
 		Post postToUpdate = postMapper.toModel(postDTO);
 		return CreateMessageResponde(postToUpdate.getIdPost(),"Post atualizado!");
 	}
-
 
 	private Post VerificarExistencia(Long id) throws PostNotFoundException {
 		return postRepository.findById(id).orElseThrow(() -> new PostNotFoundException(id));

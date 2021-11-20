@@ -23,7 +23,7 @@ public class PostController {
 
 	private PostService postService;
 
-	@PostMapping("/create")
+	@PostMapping(path = "/create")
 	@ResponseStatus(HttpStatus.CREATED)
 	public MessageResponseDTO savePost(@RequestBody @Valid PostDTO postDTO) {
 		return postService.savePost(postDTO);
@@ -34,35 +34,23 @@ public class PostController {
 		return postService.findAll();
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping(path = {"/{id}"})
 	public PostDTO findById(@PathVariable Long id) throws PostNotFoundException {
 		return postService.findById(id);
 	}
 
-	@PutMapping("/update/{id}")
+	@PutMapping(path = {"/update/{id}"})
 	public MessageResponseDTO updateById(@PathVariable Long id, @RequestBody @Valid PostDTO postDTO) throws PostNotFoundException {
 		return postService.updateById(id, postDTO);
 	}
 
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping(path = {"/delete/{id}"})
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deleteById(@PathVariable Long id) throws PostNotFoundException {
 		postService.delete(id);
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
