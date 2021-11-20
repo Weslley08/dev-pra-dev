@@ -29,7 +29,7 @@ public class PostDTO {
     private String autor;
 
     @NotEmpty
-    @Size(min = 30, max = 256, message = "O texto deve conter no minimo 30 caracteres e no máximo 256")
+    @Size(min = 30)
     private String texto;
 
     @Builder.Default
