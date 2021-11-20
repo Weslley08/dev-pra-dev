@@ -13,8 +13,6 @@ import lombok.Data;
 @Table(name = "posts")
 public class Post {
 
-
-  
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id_post", unique=true)
