@@ -6,11 +6,9 @@ import br.com.devpradev.util.exception.PostNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.http.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.com.devpradev.service.PostService;
-import br.com.devpradev.models.entity.Post;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -23,7 +21,7 @@ public class PostController {
 
 	private PostService postService;
 
-	@PostMapping(path = "/create")
+	@PostMapping(path = {"/create"})
 	@ResponseStatus(HttpStatus.CREATED)
 	public MessageResponseDTO savePost(@RequestBody @Valid PostDTO postDTO) {
 		return postService.savePost(postDTO);

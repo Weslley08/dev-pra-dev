@@ -30,6 +30,7 @@ public class PostDTO {
     @Size(min = 30, max = 256)
     private String texto;
 
+    @Builder.Default
     private Date data = new Date();
     
 }

@@ -21,43 +21,48 @@ public class PostService {
 
 	private PostRepository postRepository;
 
-	private final PostMapper postMapper = PostMapper.INSTANCE;
+	private static PostMapper postMapper = PostMapper.INSTANCE;
 
+	@Transactional
 	public MessageResponseDTO savePost(PostDTO postDTO){
 		Post postToSave = postMapper.toModel(postDTO);
 
 		Post savedPost = postRepository.save(postToSave);
-		return CreateMessageResponde (savedPost.getIdPost(),"Post criado! ");
+		return createMessageResponde (savedPost.getIdPost(),"Post criado! ");
 	}
 
+	@Transactional
 	public List<PostDTO> findAll(){
 		List<Post> allPosts = postRepository.findAll();
 		return allPosts.stream().map(postMapper::toDTO).collect(Collectors.toList());
 	}
 
+	@Transactional
 	public PostDTO findById(Long id) throws PostNotFoundException {
-		Post post = VerificarExistencia(id);
+		Post post = verificarExistencia(id);
 		return postMapper.toDTO(post);
 	}
 
+	@Transactional
 	public void delete(Long id) throws PostNotFoundException {
-		VerificarExistencia(id);
+		verificarExistencia(id);
 		postRepository.deleteById(id);
 	}
 
+	@Transactional
 	public MessageResponseDTO updateById(Long id, PostDTO postDTO) throws PostNotFoundException {
-		VerificarExistencia(id);
+		verificarExistencia(id);
 
 		Post postToUpdate = postMapper.toModel(postDTO);
-		return CreateMessageResponde(postToUpdate.getIdPost(),"Post atualizado!");
+		return createMessageResponde(postToUpdate.getIdPost(),"Post atualizado!");
 	}
+	
 
-	private Post VerificarExistencia(Long id) throws PostNotFoundException {
+	private Post verificarExistencia(Long id) throws PostNotFoundException {
 		return postRepository.findById(id).orElseThrow(() -> new PostNotFoundException(id));
 	}
 
-
-	private MessageResponseDTO CreateMessageResponde(Long id, String messege){
+	private MessageResponseDTO createMessageResponde(Long id, String messege){
 		return MessageResponseDTO.builder().message(messege + id).build();
 	}
 
