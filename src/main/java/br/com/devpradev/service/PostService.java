@@ -7,6 +7,7 @@ import br.com.devpradev.models.entity.Post;
 import br.com.devpradev.repository.PostRepository;
 
 import br.com.devpradev.util.exception.PostNotFoundException;
+import lombok.AllArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,12 +16,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PostService {
 
-	@Autowired
 	private PostRepository postRepository;
 
-	@Autowired
 	private static PostMapper postMapper = PostMapper.INSTANCE;
 
 	@Transactional
@@ -56,7 +56,6 @@ public class PostService {
 		Post postToUpdate = postMapper.toModel(postDTO);
 		return createMessageResponde(postToUpdate.getIdPost(),"Post atualizado!");
 	}
-	
 
 	private Post verificarExistencia(Long id) throws PostNotFoundException {
 		return postRepository.findById(id).orElseThrow(() -> new PostNotFoundException(id));
