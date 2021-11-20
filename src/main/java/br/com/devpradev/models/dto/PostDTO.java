@@ -21,15 +21,15 @@ public class PostDTO {
     private Long idPost;
 
     @NotEmpty
-    @Size(min = 20, max = 64)
+    @Size(min = 20, max = 64, message = "O titulo deve conter no minimo 20 caracteres e no máximo 64")
     private String titulo;
 
     @NotEmpty
-    @Size(min = 2, max = 32)
+    @Size(min = 3, max = 32, message = "O Autor deve conter no minimo 3 caracteres e no máximo 32")
     private String autor;
 
     @NotEmpty
-    @Size(min = 30, max = 256)
+    @Size(min = 30, max = 256, message = "O texto deve conter no minimo 30 caracteres e no máximo 256")
     private String texto;
 
     @Builder.Default
