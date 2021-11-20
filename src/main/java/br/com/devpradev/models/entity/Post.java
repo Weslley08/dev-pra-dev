@@ -16,7 +16,7 @@ public class Post {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id_post")
+  @Column(name = "id_post", unique=true)
   private Long idPost;
 
   // * Definir tamanho maximo que o atributo pode receber(50 caracteres)
