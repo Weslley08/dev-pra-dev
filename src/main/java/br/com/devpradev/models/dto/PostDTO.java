@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 @Data
@@ -30,6 +33,7 @@ public class PostDTO {
     private String texto;
 
     @Builder.Default
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy - HH:mm", timezone = "America/Sao_Paulo")
     private Date data = new Date();
     
 }
