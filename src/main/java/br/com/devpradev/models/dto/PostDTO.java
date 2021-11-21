@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -18,6 +19,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class PostDTO {
 
+    @Column(unique=true)
     private Long idPost;
 
     @NotBlank(message = "Titulo não deve estar em branco.")
