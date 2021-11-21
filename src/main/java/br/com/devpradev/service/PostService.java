@@ -28,7 +28,7 @@ public class PostService {
 		Post postToSave = postMapper.toModel(postDTO);
 
 		Post savedPost = postRepository.save(postToSave);
-		return createMessageResponde (savedPost.getIdPost(),"Post criado! ");
+		return createMessageResponde(savedPost.getIdPost(),"Post criado! ");
 	}
 
 	@Transactional
@@ -64,28 +64,6 @@ public class PostService {
 	private MessageResponseDTO createMessageResponde(Long id, String messege){
 		return MessageResponseDTO.builder().message(messege + id).build();
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
