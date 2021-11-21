@@ -24,8 +24,7 @@ public class PostService {
 	private static PostMapper postMapper = PostMapper.INSTANCE;
 
 	@Transactional
-	public MessageResponseDTO savePost(PostDTO postDTO) throws PostNotFoundException {
-		verificarExistencia(postDTO.getIdPost());
+	public MessageResponseDTO savePost(PostDTO postDTO) {
 		Post postToSave = postMapper.toModel(postDTO);
 
 		Post savedPost = postRepository.save(postToSave);
