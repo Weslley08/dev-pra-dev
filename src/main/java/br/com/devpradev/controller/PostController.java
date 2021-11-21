@@ -23,7 +23,7 @@ public class PostController {
 
 	@PostMapping(path = {"/create"})
 	@ResponseStatus(HttpStatus.CREATED)
-	public MessageResponseDTO savePost(@RequestBody @Valid PostDTO postDTO) throws PostNotFoundException  {
+	public MessageResponseDTO savePost(@RequestBody @Valid PostDTO postDTO) {
 		return postService.savePost(postDTO);
 	}
 
