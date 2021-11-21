@@ -21,9 +21,7 @@ public class PostService {
 
 	private PostRepository postRepository;
 
-	private PostMapper postMapper;
-
-	// private static PostMapper postMapper = PostMapper.INSTANCE;
+	private static PostMapper postMapper = PostMapper.INSTANCE;
 
 	@Transactional
 	public MessageResponseDTO savePost(PostDTO postDTO) {

@@ -35,6 +35,7 @@ public class PostDTO {
     private String texto;
 
     @Builder.Default
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy - HH:mm", timezone = "America/Sao_Paulo")
     private Date data = new Date();
 
 }
