@@ -23,7 +23,7 @@ public class PostController {
 
 	@PostMapping(path = {"/create"})
 	@ResponseStatus(HttpStatus.CREATED)
-	public MessageResponseDTO savePost(@RequestBody @Valid PostDTO postDTO)  {
+	public MessageResponseDTO savePost(@RequestBody @Valid PostDTO postDTO) throws PostNotFoundException  {
 		return postService.savePost(postDTO);
 	}
 
@@ -49,37 +49,3 @@ public class PostController {
 	}
 
 }
-
-
-
-
-
-
-
-//	@GetMapping
-//	public ResponseEntity<List<Post>> findAll() {
-//		return ResponseEntity.ok(postService.findAll());
-//	}
-//
-//	@GetMapping(path = { "/{id}" })
-//	public ResponseEntity<Post> findById(@PathVariable Long id) {
-//		return ResponseEntity.ok(postService.findById(id));
-//	}
-//
-//	@PostMapping(path = {"/criar"})
-//	public ResponseEntity<Post> save(@RequestBody Post post) {
-//		return ResponseEntity.ok(postService.save(post));
-//	}
-//
-//	@PutMapping(path = { "/{id}" })
-//	public ResponseEntity<Post> update(@PathVariable Long id, @RequestBody Post objpost) {
-//		Post newObjPost = postService.update(id, objpost);
-//		return ResponseEntity.ok().body(newObjPost);
-//	}
-//
-//	@DeleteMapping({ "/{id}" })
-//	public ResponseEntity<Post> delete(@PathVariable Long id) {
-//		return ResponseEntity.ok(postService.delete(id));
-
-
-
