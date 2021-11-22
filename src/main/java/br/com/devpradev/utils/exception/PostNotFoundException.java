@@ -1,4 +1,4 @@
-package br.com.devpradev.util.exception;
+package br.com.devpradev.utils.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

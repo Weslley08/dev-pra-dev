@@ -5,7 +5,6 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 
 import lombok.Data;
 
@@ -19,13 +18,13 @@ public class Post {
   @Column(unique=true)
   private Long idPost;
 
-  @NotEmpty
+  @Column(nullable = false)
   private String titulo;
 
-  @NotEmpty
+  @Column(nullable = false)
   private String autor;
 
-  @NotEmpty
+  @Column(nullable = false)
   private String texto;
 
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy - HH:mm", timezone = "America/Sao_Paulo")

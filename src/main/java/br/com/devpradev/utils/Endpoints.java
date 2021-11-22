@@ -1,4 +1,4 @@
-package br.com.devpradev.util;
+package br.com.devpradev.utils;
 
 public abstract class Endpoints {
 

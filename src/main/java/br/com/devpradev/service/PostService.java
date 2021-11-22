@@ -1,12 +1,11 @@
 package br.com.devpradev.service;
 
 import br.com.devpradev.mapper.PostMapper;
-import br.com.devpradev.models.dto.MessageResponseDTO;
 import br.com.devpradev.models.dto.PostDTO;
 import br.com.devpradev.models.entity.Post;
 import br.com.devpradev.repository.PostRepository;
-import br.com.devpradev.util.exception.PostNotFoundException;
-
+import br.com.devpradev.utils.MessageResponse;
+import br.com.devpradev.utils.exception.PostNotFoundException;
 import lombok.AllArgsConstructor;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -26,7 +25,7 @@ public class PostService {
 	private static PostMapper postMapper = PostMapper.INSTANCE;
 
 	@Transactional
-	public MessageResponseDTO savePost(PostDTO postDTO) {
+	public MessageResponse savePost(PostDTO postDTO) {
 		Post postToSave = postMapper.toModel(postDTO);
 		postRepository.save(postToSave);
 		return createMessageResponse("Post criado!");
@@ -39,7 +38,7 @@ public class PostService {
 	}
 
 	@Transactional
-	public MessageResponseDTO findById(Long id, PostDTO postDTO) throws PostNotFoundException {
+	public MessageResponse findById(Long id, PostDTO postDTO) throws PostNotFoundException {
 		Post post = verificarExistencia(id);
 
 		postMapper.toDTO(post);
@@ -47,7 +46,7 @@ public class PostService {
 	}
 
 	@Transactional
-	public MessageResponseDTO delete(@PathVariable Long id) throws PostNotFoundException {
+	public MessageResponse delete(@PathVariable Long id) throws PostNotFoundException {
 		verificarExistencia(id);
 
 		postRepository.deleteById(id);
@@ -55,7 +54,7 @@ public class PostService {
 	}
 
 	@Transactional
-	public MessageResponseDTO updateById(Long id, PostDTO postDTO) throws PostNotFoundException {
+	public MessageResponse updateById(Long id, PostDTO postDTO) throws PostNotFoundException {
 		verificarExistencia(id);
 
 		postMapper.toModel(postDTO);
@@ -66,8 +65,8 @@ public class PostService {
 		return postRepository.findById(id).orElseThrow(() -> new PostNotFoundException(id));
 	}
 
-	private MessageResponseDTO createMessageResponse(String messege) {
-		return MessageResponseDTO.builder().message(messege).build();
+	private MessageResponse createMessageResponse(String messege) {
+		return MessageResponse.builder().message(messege).build();
 	}
 
 }

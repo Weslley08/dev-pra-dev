@@ -1,10 +1,10 @@
-package br.com.devpradev.models.dto;
+package br.com.devpradev.utils;
 
 import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Builder
-public class MessageResponseDTO {
+public class MessageResponse {
     private String message;
 }

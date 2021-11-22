@@ -1,10 +1,10 @@
 package br.com.devpradev.controller;
 
-import br.com.devpradev.models.dto.MessageResponseDTO;
 import br.com.devpradev.models.dto.PostDTO;
-import br.com.devpradev.util.Endpoints;
-import br.com.devpradev.util.exception.PostNotFoundException;
 import br.com.devpradev.service.PostService;
+import br.com.devpradev.utils.Endpoints;
+import br.com.devpradev.utils.MessageResponse;
+import br.com.devpradev.utils.exception.PostNotFoundException;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +16,6 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 
 @RestController
-@CrossOrigin(origins = Endpoints.CROSS_ORIGINS_FRONT)
 @RequestMapping(Endpoints.REQUEST_POST)
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PostController {
@@ -25,7 +24,7 @@ public class PostController {
 
 	@PostMapping(path = Endpoints.REQUEST_CREATE)
 	@ResponseStatus(HttpStatus.CREATED)
-	public MessageResponseDTO savePost(@RequestBody @Valid PostDTO postDTO) {
+	public MessageResponse savePost(@RequestBody @Valid PostDTO postDTO) {
 		return postService.savePost(postDTO);
 	}
 
@@ -35,12 +34,12 @@ public class PostController {
 	}
 
 	@GetMapping(path = Endpoints.REQUEST_POST_FIND_BY_ID)
-	public MessageResponseDTO findById(@PathVariable Long id) throws PostNotFoundException {
+	public MessageResponse findById(@PathVariable Long id) throws PostNotFoundException {
 		return postService.findById(id, null);
 	}
 
 	@PutMapping(path = Endpoints.REQUEST_POST_UPDATE)
-	public MessageResponseDTO updateById(@PathVariable @Valid Long id, @RequestBody @Valid PostDTO postDTO) throws PostNotFoundException {
+	public MessageResponse updateById(@PathVariable @Valid Long id, @RequestBody @Valid PostDTO postDTO) throws PostNotFoundException {
 		return postService.updateById(id, postDTO);
 	}
 
