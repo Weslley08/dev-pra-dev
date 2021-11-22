@@ -3,7 +3,6 @@ package br.com.devpradev.controller;
 import br.com.devpradev.models.dto.MessageResponseDTO;
 import br.com.devpradev.models.dto.PostDTO;
 import br.com.devpradev.util.Endpoints;
-import br.com.devpradev.util.exception.PostExistException;
 import br.com.devpradev.util.exception.PostNotFoundException;
 import br.com.devpradev.service.PostService;
 
@@ -26,7 +25,7 @@ public class PostController {
 
 	@PostMapping(path = Endpoints.REQUEST_CREATE)
 	@ResponseStatus(HttpStatus.CREATED)
-	public MessageResponseDTO savePost(@RequestBody @Valid PostDTO postDTO) throws PostExistException {
+	public MessageResponseDTO savePost(@RequestBody @Valid PostDTO postDTO) {
 		return postService.savePost(postDTO);
 	}
 
@@ -41,7 +40,7 @@ public class PostController {
 	}
 
 	@PutMapping(path = Endpoints.REQUEST_POST_UPDATE)
-	public MessageResponseDTO updateById(@PathVariable @Valid Long id, @RequestBody @Valid PostDTO postDTO) throws PostExistException {
+	public MessageResponseDTO updateById(@PathVariable @Valid Long id, @RequestBody @Valid PostDTO postDTO) throws PostNotFoundException {
 		return postService.updateById(id, postDTO);
 	}
 

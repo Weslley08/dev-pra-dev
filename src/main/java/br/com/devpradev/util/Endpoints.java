@@ -15,4 +15,5 @@ public abstract class Endpoints {
     public static final String REQUEST_POST_UPDATE = "/update/{id}";
 
     public static final String REQUEST_DELETE = "/delete/{id}";
+    
 }
