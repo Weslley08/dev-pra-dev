@@ -12,10 +12,11 @@ public class CorsConfigurations implements WebMvcConfigurer {
     
     @Override
     public void addCorsMappings(CorsRegistry corsRegistry) {
-        
+
         // Front-End
-        corsRegistry.addMapping("/**").allowedOrigins(Endpoints.CROSS_ORIGINS_FRONT).allowedMethods("GET", "POST",
-                "PUT", "DELETE", "OPTIONS", "HEAD", "TRACE", "CONNECT");
+        corsRegistry.addMapping("/**")
+        .allowedOrigins("https://weslley08.github.io/dev-pra-dev-front/")
+        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "TRACE", "CONNECT");
     }
 
 }
