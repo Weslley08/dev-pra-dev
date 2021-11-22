@@ -16,7 +16,7 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = Endpoints.CROSS_ORIGINS_FRONT)
 @RequestMapping(Endpoints.REQUEST_POST)
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PostController {

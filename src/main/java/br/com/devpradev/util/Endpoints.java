@@ -4,7 +4,7 @@ public abstract class Endpoints {
 
     Endpoints() {}
 
-    public static final String CROSS_ORIGINS_FRONT = "https://dev-pra-dev-front.herokuapp.com/";
+    public static final String CROSS_ORIGINS_FRONT = "https://weslley08.github.io/dev-pra-dev-front/";
 
     public static final String REQUEST_POST = "api/blog/request";
 
