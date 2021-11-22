@@ -2,6 +2,7 @@ package br.com.devpradev.controller;
 
 import br.com.devpradev.models.dto.MessageResponseDTO;
 import br.com.devpradev.models.dto.PostDTO;
+import br.com.devpradev.util.Endpoints;
 import br.com.devpradev.util.exception.PostNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,13 +16,13 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("api/blog/request")
+@RequestMapping(Endpoints.REQUEST_POST)
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PostController {
 
 	private PostService postService;
 
-	@PostMapping(path = {"/create"})
+	@PostMapping(path = Endpoints.REQUEST_CREATE)
 	@ResponseStatus(HttpStatus.CREATED)
 	public MessageResponseDTO savePost(@RequestBody @Valid PostDTO postDTO) {
 		return postService.savePost(postDTO);
@@ -32,17 +33,17 @@ public class PostController {
 		return postService.findAll();
 	}
 
-	@GetMapping(path = {"/{id}"})
+	@GetMapping(path = Endpoints.REQUEST_POST_FIND_BY_ID)
 	public PostDTO findById(@PathVariable Long id) throws PostNotFoundException {
 		return postService.findById(id);
 	}
 
-	@PutMapping(path = {"/update/{id}"})
+	@PutMapping(path = Endpoints.REQUEST_POST_UPDATE)
 	public MessageResponseDTO updateById(@PathVariable Long id, @RequestBody @Valid PostDTO postDTO) throws PostNotFoundException {
 		return postService.updateById(id, postDTO);
 	}
 
-	@DeleteMapping(path = {"/delete/{id}"})
+	@DeleteMapping(path = Endpoints.REQUEST_DELETE)
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deleteById(@PathVariable Long id) throws PostNotFoundException {
 		postService.delete(id);

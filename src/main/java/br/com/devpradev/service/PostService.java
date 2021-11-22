@@ -5,7 +5,6 @@ import br.com.devpradev.models.dto.MessageResponseDTO;
 import br.com.devpradev.models.dto.PostDTO;
 import br.com.devpradev.models.entity.Post;
 import br.com.devpradev.repository.PostRepository;
-
 import br.com.devpradev.util.exception.PostNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
