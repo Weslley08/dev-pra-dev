@@ -45,7 +45,6 @@ public class PostController {
 	}
 
 	@DeleteMapping(path = Endpoints.REQUEST_DELETE)
-	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deleteById(@PathVariable Long id) throws PostNotFoundException {
 		postService.delete(id);
 	}

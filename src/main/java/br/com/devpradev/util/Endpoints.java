@@ -8,11 +8,11 @@ public abstract class Endpoints {
 
     public static final String REQUEST_POST = "api/blog/request";
 
-    public static final String REQUEST_CREATE = "{/create}";
+    public static final String REQUEST_CREATE = "/create";
     
-    public static final String REQUEST_POST_FIND_BY_ID = "{/{id}}";
+    public static final String REQUEST_POST_FIND_BY_ID = "/{id}";
 
-    public static final String REQUEST_POST_UPDATE = "{/update/{id}";
+    public static final String REQUEST_POST_UPDATE = "/update/{id}";
 
-    public static final String REQUEST_DELETE = "{/delete/{id}}";
+    public static final String REQUEST_DELETE = "/delete/{id}";
 }
