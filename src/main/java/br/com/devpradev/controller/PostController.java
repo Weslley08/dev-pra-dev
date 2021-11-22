@@ -36,7 +36,7 @@ public class PostController {
 
 	@GetMapping(path = Endpoints.REQUEST_POST_FIND_BY_ID)
 	public MessageResponseDTO findById(@PathVariable Long id) throws PostNotFoundException {
-		return postService.findById(id, null, null);
+		return postService.findById(id, null);
 	}
 
 	@PutMapping(path = Endpoints.REQUEST_POST_UPDATE)

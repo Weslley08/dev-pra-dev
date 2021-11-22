@@ -8,6 +8,7 @@ import br.com.devpradev.repository.PostRepository;
 import br.com.devpradev.util.exception.PostNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,7 @@ public class PostService {
 	public MessageResponseDTO savePost(PostDTO postDTO) {
 		Optional<Post> optionalPost = postRepository.findById(postDTO.getIdPost());
 		if (optionalPost.isPresent()) {
-			return createMessageResponse("ID já cadastrado" + "status: " + HttpStatus.BAD_REQUEST, null);
+			return createMessageResponse("ID já cadastrado " + "status: " + HttpStatus.BAD_REQUEST, null);
 		} else {
 			Post postToSave = postMapper.toModel(postDTO);
 			postRepository.save(postToSave);
@@ -43,15 +44,15 @@ public class PostService {
 	}
 
 	@Transactional
-	public MessageResponseDTO findById(Long id, Post post, PostDTO postDTO) throws PostNotFoundException {
-		verificarExistencia(id);
+	public MessageResponseDTO findById(Long id, PostDTO postDTO) throws PostNotFoundException {
+		Post post = verificarExistencia(id);
 
 		postMapper.toDTO(post);
 		return createMessageResponse("ID" + id + "encontrado" + "status: " + HttpStatus.OK, null);
 	}
 
 	@Transactional
-	public MessageResponseDTO delete(Long id) throws PostNotFoundException {
+	public MessageResponseDTO delete(@PathVariable Long id) throws PostNotFoundException {
 		verificarExistencia(id);
 
 		postRepository.deleteById(id);
