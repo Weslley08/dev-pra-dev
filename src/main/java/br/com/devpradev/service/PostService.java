@@ -9,9 +9,11 @@ import br.com.devpradev.util.exception.PostNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,10 +26,14 @@ public class PostService {
 
 	@Transactional
 	public MessageResponseDTO savePost(PostDTO postDTO) {
-		Post postToSave = postMapper.toModel(postDTO);
-
-		Post savedPost = postRepository.save(postToSave);
-		return createMessageResponde(savedPost.getIdPost(), "Post criado! ");
+		Optional<Post> optionalPost = postRepository.findById(postDTO.getIdPost());
+		if (optionalPost.isPresent()) {
+			return createMessageResponse("ID já cadastrado" + "status: " + HttpStatus.BAD_REQUEST, null);
+		} else {
+			Post postToSave = postMapper.toModel(postDTO);
+			postRepository.save(postToSave);
+			return createMessageResponse("Post criado!" + HttpStatus.OK, null);
+		}
 	}
 
 	@Transactional
@@ -37,31 +43,38 @@ public class PostService {
 	}
 
 	@Transactional
-	public PostDTO findById(Long id) throws PostNotFoundException {
-		Post post = verificarExistencia(id);
-		return postMapper.toDTO(post);
+	public MessageResponseDTO findById(Long id, Post post, PostDTO postDTO) throws PostNotFoundException {
+		verificarExistencia(id);
+
+		postMapper.toDTO(post);
+		return createMessageResponse("ID" + id + "encontrado" + "status: " + HttpStatus.OK, null);
 	}
 
 	@Transactional
-	public void delete(Long id) throws PostNotFoundException {
+	public MessageResponseDTO delete(Long id) throws PostNotFoundException {
 		verificarExistencia(id);
+
 		postRepository.deleteById(id);
+		return createMessageResponse("Post deletado" + "Status: " + HttpStatus.OK, null);
 	}
 
 	@Transactional
-	public MessageResponseDTO updateById(Long id, PostDTO postDTO) throws PostNotFoundException {
-		verificarExistencia(id);
-
-		Post postToUpdate = postMapper.toModel(postDTO);
-		return createMessageResponde(postToUpdate.getIdPost(), "Post atualizado!");
+	public MessageResponseDTO updateById(Long id, PostDTO postDTO) {
+		Optional<Post> optionalPost = postRepository.findById(id);
+		if (optionalPost.isPresent()) {
+			return createMessageResponse("ID já cadastrado" + "Status: " + HttpStatus.BAD_REQUEST, null);
+		} else {
+			postMapper.toModel(postDTO);
+			return createMessageResponse("Post atualizado!" + HttpStatus.OK, null);
+		}
 	}
 
 	private Post verificarExistencia(Long id) throws PostNotFoundException {
 		return postRepository.findById(id).orElseThrow(() -> new PostNotFoundException(id));
 	}
 
-	private MessageResponseDTO createMessageResponde(Long id, String messege) {
-		return MessageResponseDTO.builder().message(messege + id).build();
+	private MessageResponseDTO createMessageResponse(String messege, HttpStatus httpStatus) {
+		return MessageResponseDTO.builder().message(messege + httpStatus).build();
 	}
 
 }
