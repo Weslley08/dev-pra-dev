@@ -5,6 +5,7 @@ import br.com.devpradev.models.dto.MessageResponseDTO;
 import br.com.devpradev.models.dto.PostDTO;
 import br.com.devpradev.models.entity.Post;
 import br.com.devpradev.repository.PostRepository;
+import br.com.devpradev.util.exception.PostExistException;
 import br.com.devpradev.util.exception.PostNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,14 +27,14 @@ public class PostService {
 	private static PostMapper postMapper = PostMapper.INSTANCE;
 
 	@Transactional
-	public MessageResponseDTO savePost(PostDTO postDTO) {
+	public MessageResponseDTO savePost(PostDTO postDTO) throws PostExistException {
 		Optional<Post> optionalPost = postRepository.findById(postDTO.getIdPost());
 		if (optionalPost.isPresent()) {
-			return createMessageResponse("ID já cadastrado " + "status: " + HttpStatus.BAD_REQUEST, null);
+			throw new PostExistException(postDTO.getIdPost());
 		} else {
 			Post postToSave = postMapper.toModel(postDTO);
 			postRepository.save(postToSave);
-			return createMessageResponse("Post criado!" + HttpStatus.OK, null);
+			return createMessageResponse("Post criado!");
 		}
 	}
 
@@ -48,7 +49,7 @@ public class PostService {
 		Post post = verificarExistencia(id);
 
 		postMapper.toDTO(post);
-		return createMessageResponse("ID" + id + "encontrado" + "status: " + HttpStatus.OK, null);
+		return createMessageResponse("ID" + id + "encontrado");
 	}
 
 	@Transactional
@@ -56,17 +57,17 @@ public class PostService {
 		verificarExistencia(id);
 
 		postRepository.deleteById(id);
-		return createMessageResponse("Post deletado" + "Status: " + HttpStatus.OK, null);
+		return createMessageResponse("Post deletado");
 	}
 
 	@Transactional
-	public MessageResponseDTO updateById(Long id, PostDTO postDTO) {
+	public MessageResponseDTO updateById(Long id, PostDTO postDTO) throws PostExistException {
 		Optional<Post> optionalPost = postRepository.findById(id);
 		if (optionalPost.isPresent()) {
-			return createMessageResponse("ID já cadastrado" + "Status: " + HttpStatus.BAD_REQUEST, null);
+			throw new PostExistException(id);
 		} else {
 			postMapper.toModel(postDTO);
-			return createMessageResponse("Post atualizado!" + HttpStatus.OK, null);
+			return createMessageResponse("Post atualizado!");
 		}
 	}
 
@@ -74,8 +75,8 @@ public class PostService {
 		return postRepository.findById(id).orElseThrow(() -> new PostNotFoundException(id));
 	}
 
-	private MessageResponseDTO createMessageResponse(String messege, HttpStatus httpStatus) {
-		return MessageResponseDTO.builder().message(messege + httpStatus).build();
+	private MessageResponseDTO createMessageResponse(String messege) {
+		return MessageResponseDTO.builder().message(messege).build();
 	}
 
 }
