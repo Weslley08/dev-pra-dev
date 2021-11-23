@@ -15,7 +15,7 @@ public class CorsConfigurations implements WebMvcConfigurer {
 
         // Front-End
         corsRegistry.addMapping("/**")
-        .allowedOrigins("https://weslley08.github.io/dev-pra-dev-front/")
+        .allowedOrigins("*")
         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "TRACE", "CONNECT");
     }
 
