@@ -1,15 +1,17 @@
-package br.com.devpradev.service;
+package br.com.devpradev.post.service;
 
-import br.com.devpradev.mapper.PostMapper;
-import br.com.devpradev.models.dto.PostDTO;
-import br.com.devpradev.models.entity.Post;
-import br.com.devpradev.repository.PostRepository;
-import br.com.devpradev.utils.MessageResponse;
-import br.com.devpradev.utils.exception.PostNotFoundException;
 import lombok.AllArgsConstructor;
 
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
+
+import br.com.devpradev.post.mapper.PostMapper;
+import br.com.devpradev.post.models.dto.PostDTO;
+import br.com.devpradev.post.models.entity.Post;
+import br.com.devpradev.post.repository.PostRepository;
+import br.com.devpradev.utils.MessageResponse;
+import br.com.devpradev.utils.exceptions.NotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +28,7 @@ public class PostService {
 
 	@Transactional
 	public MessageResponse savePost(PostDTO postDTO) {
+		
 		Post postToSave = postMapper.toModel(postDTO);
 		postRepository.save(postToSave);
 		return createMessageResponse("Post criado!");
@@ -38,7 +41,7 @@ public class PostService {
 	}
 
 	@Transactional
-	public MessageResponse findById(Long id, PostDTO postDTO) throws PostNotFoundException {
+	public MessageResponse findById(Long id, PostDTO postDTO) throws NotFoundException {
 		Post post = verificarExistencia(id);
 
 		postMapper.toDTO(post);
@@ -46,7 +49,7 @@ public class PostService {
 	}
 
 	@Transactional
-	public MessageResponse delete(@PathVariable Long id) throws PostNotFoundException {
+	public MessageResponse delete(@PathVariable Long id) throws NotFoundException {
 		verificarExistencia(id);
 
 		postRepository.deleteById(id);
@@ -54,15 +57,15 @@ public class PostService {
 	}
 
 	@Transactional
-	public MessageResponse updateById(Long id, PostDTO postDTO) throws PostNotFoundException {
+	public MessageResponse updateById(Long id, PostDTO postDTO) throws NotFoundException {
 		verificarExistencia(id);
 
 		postMapper.toModel(postDTO);
 		return createMessageResponse("Post atualizado!");
 	}
 
-	private Post verificarExistencia(Long id) throws PostNotFoundException {
-		return postRepository.findById(id).orElseThrow(() -> new PostNotFoundException(id));
+	private Post verificarExistencia(Long id) throws NotFoundException {
+		return postRepository.findById(id).orElseThrow(() -> new NotFoundException(id));
 	}
 
 	private MessageResponse createMessageResponse(String messege) {

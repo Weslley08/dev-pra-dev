@@ -1,6 +1,6 @@
-package br.com.devpradev.repository;
+package br.com.devpradev.post.repository;
 
-import br.com.devpradev.models.entity.Post;
+import br.com.devpradev.post.models.entity.Post;
 
 import java.util.Optional;
 

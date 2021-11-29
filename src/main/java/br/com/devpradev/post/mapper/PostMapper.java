@@ -1,7 +1,7 @@
-package br.com.devpradev.mapper;
+package br.com.devpradev.post.mapper;
 
-import br.com.devpradev.models.dto.PostDTO;
-import br.com.devpradev.models.entity.Post;
+import br.com.devpradev.post.models.dto.PostDTO;
+import br.com.devpradev.post.models.entity.Post;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

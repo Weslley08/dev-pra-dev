@@ -1,10 +1,10 @@
-package br.com.devpradev.controller;
+package br.com.devpradev.post.controller;
 
-import br.com.devpradev.models.dto.PostDTO;
-import br.com.devpradev.service.PostService;
+import br.com.devpradev.post.models.dto.PostDTO;
+import br.com.devpradev.post.service.PostService;
 import br.com.devpradev.utils.Endpoints;
 import br.com.devpradev.utils.MessageResponse;
-import br.com.devpradev.utils.exception.PostNotFoundException;
+import br.com.devpradev.utils.exceptions.NotFoundException;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +23,7 @@ public class PostController {
 
 	private PostService postService;
 
-	@PostMapping(path = Endpoints.REQUEST_CREATE)
+	@PostMapping(path = Endpoints.REQUEST_POST_CREATE)
 	@ResponseStatus(HttpStatus.CREATED)
 	public MessageResponse savePost(@RequestBody @Valid PostDTO postDTO) {
 		return postService.savePost(postDTO);
@@ -35,17 +35,17 @@ public class PostController {
 	}
 
 	@GetMapping(path = Endpoints.REQUEST_POST_FIND_BY_ID)
-	public MessageResponse findById(@PathVariable Long id) throws PostNotFoundException {
+	public MessageResponse findById(@PathVariable Long id) throws NotFoundException {
 		return postService.findById(id, null);
 	}
 
 	@PutMapping(path = Endpoints.REQUEST_POST_UPDATE)
-	public MessageResponse updateById(@PathVariable @Valid Long id, @RequestBody @Valid PostDTO postDTO) throws PostNotFoundException {
+	public MessageResponse updateById(@PathVariable @Valid Long id, @RequestBody @Valid PostDTO postDTO) throws NotFoundException {
 		return postService.updateById(id, postDTO);
 	}
 
-	@DeleteMapping(path = Endpoints.REQUEST_DELETE)
-	public void deleteById(@PathVariable Long id) throws PostNotFoundException {
+	@DeleteMapping(path = Endpoints.REQUEST_POST_DELETE)
+	public void deleteById(@PathVariable Long id) throws NotFoundException {
 		postService.delete(id);
 	}
 

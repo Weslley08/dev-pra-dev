@@ -1,4 +1,4 @@
-package br.com.devpradev.models.dto;
+package br.com.devpradev.post.models.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,7 +23,7 @@ public class PostDTO {
     private Long idPost;
 
     @NotBlank(message = "Titulo não deve estar em branco.")
-    @Size(min = 20, max = 64, message = "O titulo deve conter no minimo 20 caracteres e no máximo 64")
+    @Size(min = 20, message = "O titulo deve conter no minimo 20 caracteres")
     private String titulo;
 
     @NotBlank(message = "Autor não deve estar em branco.")

@@ -1,4 +1,4 @@
-package br.com.devpradev.models.entity;
+package br.com.devpradev.post.models.entity;
 
 import java.util.Date;
 
