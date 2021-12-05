@@ -16,6 +16,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping(Endpoints.REQUEST_PESSOA)
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PessoaController {

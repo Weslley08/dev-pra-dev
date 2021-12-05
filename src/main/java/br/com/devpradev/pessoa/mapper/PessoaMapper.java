@@ -1,6 +1,6 @@
 package br.com.devpradev.pessoa.mapper;
 
-import org.mapstruct.Mapper;
+import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
 import br.com.devpradev.pessoa.models.dto.PessoaDTO;
@@ -11,8 +11,7 @@ public interface PessoaMapper {
 
     PessoaMapper INSTANCE = Mappers.getMapper(PessoaMapper.class);
 
-    Pessoa toModel(PessoaDTO personDTO);
-
-    PessoaDTO toDTO(Pessoa person);
+    Pessoa toModel(PessoaDTO pessoaDTO);
+    PessoaDTO toDTO(Pessoa pessoa);
 
 }

@@ -1,6 +1,7 @@
 package br.com.devpradev.post.controller;
 
 import br.com.devpradev.post.models.dto.PostDTO;
+import br.com.devpradev.post.models.entity.Post;
 import br.com.devpradev.post.service.PostService;
 import br.com.devpradev.utils.Endpoints;
 import br.com.devpradev.utils.MessageResponse;
@@ -35,12 +36,12 @@ public class PostController {
 	}
 
 	@GetMapping(path = Endpoints.REQUEST_POST_FIND_BY_ID)
-	public MessageResponse findById(@PathVariable Long id) throws NotFoundException {
-		return postService.findById(id, null);
+	public PostDTO findById(@PathVariable Long id) throws NotFoundException {
+		return postService.findById(id);
 	}
 
 	@PutMapping(path = Endpoints.REQUEST_POST_UPDATE)
-	public MessageResponse updateById(@PathVariable @Valid Long id, @RequestBody @Valid PostDTO postDTO) throws NotFoundException {
+	public Post updateById(@PathVariable Long id, @RequestBody @Valid PostDTO postDTO) throws NotFoundException {
 		return postService.updateById(id, postDTO);
 	}
 

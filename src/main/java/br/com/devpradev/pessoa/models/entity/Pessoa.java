@@ -9,10 +9,6 @@ import java.util.Date;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-import br.com.devpradev.pessoa.models.enums.*;
-
 @Entity
 @Data
 @Builder
@@ -31,20 +27,15 @@ public class Pessoa {
     private String sobrenome;
 
     @Column(nullable = false)
-    private String cpf;
-
-    @Column(nullable = false)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy", timezone = "America/Sao_Paulo")
     private Date dataDeNascimento;
 
     @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private Sexo sexo;
+    private String sexo;
 
     @Column(nullable = false)
     private String email;
 
     @Column(nullable = false)
-    private Telefone telefone;
+    private String telefone;
 
 }

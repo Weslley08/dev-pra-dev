@@ -28,7 +28,7 @@ public class PostService {
 
 	@Transactional
 	public MessageResponse savePost(PostDTO postDTO) {
-		
+
 		Post postToSave = postMapper.toModel(postDTO);
 		postRepository.save(postToSave);
 		return createMessageResponse("Post criado!");
@@ -41,27 +41,23 @@ public class PostService {
 	}
 
 	@Transactional
-	public MessageResponse findById(Long id, PostDTO postDTO) throws NotFoundException {
+	public PostDTO findById(Long id) throws NotFoundException {
 		Post post = verificarExistencia(id);
-
-		postMapper.toDTO(post);
-		return createMessageResponse("ID" + id + "encontrado");
+		return postMapper.toDTO(post);
 	}
 
 	@Transactional
-	public MessageResponse delete(@PathVariable Long id) throws NotFoundException {
+	public Post updateById(Long id, PostDTO postDTO) throws NotFoundException {
 		verificarExistencia(id);
 
+		Post postToUpdate = postMapper.toModel(postDTO);
+		return postRepository.save(postToUpdate);
+	}
+
+	@Transactional
+	public void delete(@PathVariable Long id) throws NotFoundException {
+		verificarExistencia(id);
 		postRepository.deleteById(id);
-		return createMessageResponse("Post deletado");
-	}
-
-	@Transactional
-	public MessageResponse updateById(Long id, PostDTO postDTO) throws NotFoundException {
-		verificarExistencia(id);
-
-		postMapper.toModel(postDTO);
-		return createMessageResponse("Post atualizado!");
 	}
 
 	private Post verificarExistencia(Long id) throws NotFoundException {
