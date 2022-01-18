@@ -1,4 +1,4 @@
-package br.com.devpradev.post.models.entity;
+package br.com.devpradev.models.entity;
 
 import java.util.Date;
 
@@ -28,7 +28,5 @@ public class Post {
 
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy - HH:mm", timezone = "America/Sao_Paulo")
   private Date data = new Date();
-
-  private Long like;
 
 }

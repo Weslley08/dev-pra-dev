@@ -1,4 +1,4 @@
-package br.com.devpradev.pessoa.models.entity;
+package br.com.devpradev.models.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,9 +31,6 @@ public class Pessoa {
 
     @Column(nullable = false)
     private String sexo;
-
-    @Column(nullable = false)
-    private String email;
 
     @Column(nullable = false)
     private String telefone;

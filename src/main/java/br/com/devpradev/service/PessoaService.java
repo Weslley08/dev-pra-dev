@@ -1,13 +1,13 @@
-package br.com.devpradev.pessoa.service;
+package br.com.devpradev.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.devpradev.pessoa.mapper.PessoaMapper;
-import br.com.devpradev.pessoa.models.dto.PessoaDTO;
-import br.com.devpradev.pessoa.models.entity.Pessoa;
-import br.com.devpradev.pessoa.repository.PessoaRepository;
+import br.com.devpradev.mapper.PessoaMapper;
+import br.com.devpradev.models.dto.PessoaDTO;
+import br.com.devpradev.models.entity.Pessoa;
+import br.com.devpradev.repository.PessoaRepository;
 import br.com.devpradev.utils.MessageResponse;
 import br.com.devpradev.utils.exceptions.NotFoundException;
 

@@ -20,4 +20,13 @@ public abstract class Endpoints {
     public static final String REQUEST_PESSOA_FIND_BY_ID = "/{id}";
     public static final String REQUEST_PESSOA_UPDATE = "/update/{id}";
     public static final String REQUEST_PESSOA_DELETE = "/delete/{id}";
+
+    /* ENDPOINTS USUARIO */
+    public static final String REQUEST_USUARIO = "api/blog/usuario";
+    public static final String REQUEST_USUARIO_CREATE = "/create";
+    public static final String REQUEST_USUARIO_FIND_BY_ID = "/{id}";
+    public static final String REQUEST_USUARIO_UPDATE = "/update/{id}";
+    public static final String REQUEST_USUARIO_DELETE = "/delete/{id}";
+
+
 }

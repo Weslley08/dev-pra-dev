@@ -1,10 +1,10 @@
-package br.com.devpradev.pessoa.mapper;
+package br.com.devpradev.mapper;
 
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
-import br.com.devpradev.pessoa.models.dto.PessoaDTO;
-import br.com.devpradev.pessoa.models.entity.Pessoa;
+import br.com.devpradev.models.dto.PessoaDTO;
+import br.com.devpradev.models.entity.Pessoa;
 
 @Mapper
 public interface PessoaMapper {

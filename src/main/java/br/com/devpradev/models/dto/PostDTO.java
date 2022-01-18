@@ -1,4 +1,4 @@
-package br.com.devpradev.post.models.dto;
+package br.com.devpradev.models.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -37,7 +37,5 @@ public class PostDTO {
     @Builder.Default
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy - HH:mm", timezone = "America/Sao_Paulo")
     private Date data = new Date();
-
-    private Long like;
 
 }

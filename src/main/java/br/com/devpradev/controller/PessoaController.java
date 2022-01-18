@@ -1,4 +1,4 @@
-package br.com.devpradev.pessoa.controller;
+package br.com.devpradev.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,8 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import br.com.devpradev.utils.MessageResponse;
-import br.com.devpradev.pessoa.models.dto.PessoaDTO;
-import br.com.devpradev.pessoa.service.PessoaService;
+import br.com.devpradev.models.dto.PessoaDTO;
+import br.com.devpradev.service.PessoaService;
 import br.com.devpradev.utils.Endpoints;
 import br.com.devpradev.utils.exceptions.NotFoundException;
 

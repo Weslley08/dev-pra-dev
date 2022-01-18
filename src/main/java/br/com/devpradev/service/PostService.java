@@ -1,14 +1,14 @@
-package br.com.devpradev.post.service;
+package br.com.devpradev.service;
 
 import lombok.AllArgsConstructor;
 
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import br.com.devpradev.post.mapper.PostMapper;
-import br.com.devpradev.post.models.dto.PostDTO;
-import br.com.devpradev.post.models.entity.Post;
-import br.com.devpradev.post.repository.PostRepository;
+import br.com.devpradev.mapper.PostMapper;
+import br.com.devpradev.models.dto.PostDTO;
+import br.com.devpradev.models.entity.Post;
+import br.com.devpradev.repository.PostRepository;
 import br.com.devpradev.utils.MessageResponse;
 import br.com.devpradev.utils.exceptions.NotFoundException;
 

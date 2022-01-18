@@ -1,8 +1,8 @@
-package br.com.devpradev.post.controller;
+package br.com.devpradev.controller;
 
-import br.com.devpradev.post.models.dto.PostDTO;
-import br.com.devpradev.post.models.entity.Post;
-import br.com.devpradev.post.service.PostService;
+import br.com.devpradev.models.dto.PostDTO;
+import br.com.devpradev.models.entity.Post;
+import br.com.devpradev.service.PostService;
 import br.com.devpradev.utils.Endpoints;
 import br.com.devpradev.utils.MessageResponse;
 import br.com.devpradev.utils.exceptions.NotFoundException;
